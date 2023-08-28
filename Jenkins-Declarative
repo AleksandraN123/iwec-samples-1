@@ -1,0 +1,19 @@
+pipline{
+  agent any
+
+environment{
+      PATH = "/opt/maven3/bin:$PATH"
+}
+  stages{
+      stage("Git Checkout"){
+         steps{
+            git credentialsId: 'github', url:'https://github.com/AleksandraN123/iwec-samples-1'
+            }
+         }
+          stage("maven Build"){
+             steps{
+                  sh "mvn clean package"
+             }
+          }
+      }
+}
